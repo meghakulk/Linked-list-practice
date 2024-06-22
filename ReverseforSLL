@@ -1,0 +1,41 @@
+Reverse Linked List
+Need to create main.h file where it contains header content in it
+#include<sll.h>
+#include<stdio.h>
+
+//creating a node
+struct Node 
+{
+int data;
+struct Node *next;
+};
+//Travesing through the list 
+struct Node *head
+void reverse()
+{
+struct Node *current,*prev,*next
+current = head;
+prev = NULL;
+while(current != NULL)
+{                                                   //10|200 20|300 30|400
+next = current->next;                              //next = 300 
+current->next = prev                               //prev=200
+prev = current;
+current = next;
+}
+head = prev;
+}
+int main()
+{
+struct Node *head = NULL;           //Local Variable
+head = Insert(head,10);
+head = Insert(head,20);
+head = Insert(head,30);
+head = Insert(head,40);
+print(head);
+head = reverse(head);
+print(head);
+}
+
+
+
