@@ -1,0 +1,54 @@
+OUTPUT OF THE PrOGRAM : 1->2->3->NULL
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a node in the linked list
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to insert a new node at the end of the linked list
+struct Node* Insert(struct Node* head, int data) {
+    struct Node* temp = (struct Node*)malloc(sizeof(struct Node)); // Allocate memory for the new node
+    temp->data = data;
+    temp->next = NULL;
+    
+    if (head == NULL) {
+        // If the list is empty, the new node becomes the head
+        head = temp;
+    } else {
+        // If the list is not empty, find the end of the list and add the new node there
+        struct Node* temp1 = head;
+        while (temp1->next != NULL) {
+            temp1 = temp1->next; // Traverse to the last node
+        }
+        temp1->next = temp; // Link the new node to the end of the list
+    }
+    return head;
+}
+
+// Function to print the linked list
+void PrintList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL; // Initialize an empty list
+
+    // Insert nodes into the list
+    head = Insert(head, 1); // Insert 1
+    head = Insert(head, 2); // Insert 2
+    head = Insert(head, 3); // Insert 3
+
+    // Print the linked list
+    PrintList(head);
+
+    return 0;
+}
+
