@@ -1,0 +1,75 @@
+OUTPUT OF THE PROGRAM : head -> [1 | *] -> [2 | *] -> [3 | NULL]
+#include <iostream>
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    // Constructor to initialize the node
+    Node(int data) {
+        this->data = data;  // Assign the parameter 'data' to the member variable 'data'
+        this->next = nullptr;  // Initialize the 'next' pointer to nullptr
+    }
+};
+
+class LinkedList {
+private:
+    Node* head;
+
+public:
+    // Constructor to initialize the linked list
+    LinkedList() {
+        head = nullptr;  // Initialize the head to nullptr
+    }
+
+    // Function to insert a new node at the end of the list
+    void insert(int data) {
+        Node* newNode = new Node(data);  // Create a new node
+        if (head == nullptr) {
+            head = newNode;  // If the list is empty, the new node becomes the head
+        } else {
+            Node* temp = head;  // Start from the head
+            while (temp->next != nullptr) {
+                temp = temp->next;  // Traverse to the last node
+            }
+            temp->next = newNode;  // Link the new node to the end of the list
+        }
+    }
+
+    // Function to print the linked list
+    void printList() {
+        Node* temp = head;  // Start from the head
+        while (temp != nullptr) {
+            std::cout << temp->data << " -> ";
+            temp = temp->next;  // Move to the next node
+        }
+        std::cout << "NULL" << std::endl;
+    }
+
+    // Destructor to free memory
+    ~LinkedList() {
+        Node* current = head;  // Start from the head
+        Node* next;
+        while (current != nullptr) {
+            next = current->next;  // Store the next node
+            delete current;  // Free the current node
+            current = next;  // Move to the next node
+        }
+        head = nullptr;  // Ensure head is null after deletion
+    }
+};
+
+int main() {
+    LinkedList list;
+
+    // Insert nodes into the list
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+
+    // Print the linked list
+    list.printList();
+
+    return 0;
+}
