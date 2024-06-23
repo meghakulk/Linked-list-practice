@@ -7,10 +7,10 @@ Need to create main.h file where it contains header content in it
 struct Node 
 {
 int data;
-struct Node *next;
+struct Node* next;
 };
 //Travesing through the list 
-struct Node *head
+struct Node* head
 void reverse()
 {
 struct Node *current,*prev,*next
